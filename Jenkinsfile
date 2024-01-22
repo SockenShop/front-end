@@ -10,7 +10,7 @@ agent any
     stages {
         stage('Build') {
             steps { //create a loop somehow??
-            sh 'docker build -t $DOCKER_ID/$DOCKER_IMAGE_FRONT_END:$DOCKER_TAG ./microservices/front-end'
+            sh 'docker build -t $DOCKER_ID/$DOCKER_IMAGE_FRONT_END:$DOCKER_TAG ./front-end'
                    }
         }
         stage('Run') {
