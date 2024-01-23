@@ -34,8 +34,8 @@ agent any
         stage('Deploy EKS') {
             environment {
                 KUBECONFIG = credentials("EKS_CONFIG")  
-                AWSKEY = credentials("AWS_KEY_ID_MORRIS")
-                AWSSECRETKEY = credentials("AWS_SECRET_KEY_MORRIS")
+                AWSKEY = credentials("AWS_KEY")
+                AWSSECRETKEY = credentials("AWS_SECRET_KEY")
 
             }
             steps{
