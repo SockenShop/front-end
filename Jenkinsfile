@@ -33,9 +33,9 @@ agent any
         }
         stage('Deploy EKS') {
             environment {
-                KUBECONFIG = credentials("EKS_CONFIG")
-                AWSCONFIG = credentials("AWS_CONFIG")
-                AWSCRED = credentials("AWS_CREDENTIALS")
+                KUBECONFIG = credentials("EKS_CONFIG")  
+                AWSKEY = credentials("AWS_KEY")
+                AWSSECRETKEY = credentials("AWS_SECRET_KEY")
 
             }
             steps{
@@ -44,8 +44,8 @@ agent any
                 sh 'cat $KUBECONFIG > .kube/config'
                 sh 'rm -Rf .aws'
                 sh 'mkdir .aws'
-                sh 'cat $AWSCONFIG > .aws/config'
-                sh 'cat $AWSCRED > .aws/credentials'
+                sh 'aws configure set aws_access_key_id $AWSKEY'
+                sh 'aws configure set aws_secret_access_key $AWSSECRETKEY'
                 sh 'kubectl apply -f ./manifests -n $NAMESPACE'
                 }
             
