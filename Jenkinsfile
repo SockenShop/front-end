@@ -41,11 +41,12 @@ agent any
             steps{
                 sh 'rm -Rf .kube'
                 sh 'mkdir .kube'
-                sh 'cat $KUBECONFIG > .kube/config'
+                //sh 'cat $KUBECONFIG > .kube/config'
                 //sh 'rm -Rf .aws'
                 //sh 'mkdir .aws'
                 sh 'aws configure set aws_access_key_id $AWSKEY'
                 sh 'aws configure set aws_secret_access_key $AWSSECRETKEY'
+                sh 'sudo chmod 777 .kube/config'
                 sh 'aws eks --region eu-west-3 update-kubeconfig --name sock-shop-9sQCAT9F'
                 sh 'kubectl apply -f ./manifests -n $NAMESPACE'
                 }
