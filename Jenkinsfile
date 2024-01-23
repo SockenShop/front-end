@@ -47,8 +47,12 @@ agent any
                 sh 'rm -Rf .aws'
                 sh 'mkdir .aws'
                 sh 'aws configure set aws_access_key_id $AWSKEY'
-                sh 'aws configure set aws_secret_access_key $AWSSECRETKEY'                
+                sh 'aws configure set aws_secret_access_key $AWSSECRETKEY'
+                sh 'aws configure set region eu-west-3'
+                sh 'aws configure set output text'                
                 sh 'aws eks --region eu-west-3 update-kubeconfig --name sock-shop-9sQCAT9F --kubeconfig .kube/config'
+                sh 'aws eks list-clusters'
+                sh 'kubectl config view'
                 sh 'kubectl apply -f ./manifests -n $NAMESPACE'
                 }
             
