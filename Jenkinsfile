@@ -31,14 +31,21 @@ agent any
             sh 'docker push $DOCKER_ID/$DOCKER_IMAGE_FRONT_END:$DOCKER_TAG && docker push $DOCKER_ID/$DOCKER_IMAGE_FRONT_END:latest'
             }
         }
-        stage('Deploy VPS') {
+        stage('Deploy EKS') {
             environment {
-                KUBECONFIG = credentials("VPS_KUBE_CONFIG")
+                KUBECONFIG = credentials("EKS_CONFIG")
+                AWSCONFIG = credentials("AWS_CONFIG")
+                AWSCRED = credentials("AWS_CREDENTIALS")
+
             }
             steps{
                 sh 'rm -Rf .kube'
                 sh 'mkdir .kube'
                 sh 'cat $KUBECONFIG > .kube/config'
+                sh 'rm -Rf .aws'
+                sh 'mkdir .aws'
+                sh 'cat $AWSCONFIG > .aws/config'
+                sh 'cat $AWSCRED > .aws/credentials'
                 sh 'kubectl apply -f ./manifests -n $NAMESPACE'
                 }
             
