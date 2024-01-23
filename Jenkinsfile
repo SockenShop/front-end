@@ -53,7 +53,7 @@ agent any
                 sh 'aws eks --region eu-west-3 update-kubeconfig --name sock-shop-9sQCAT9F --kubeconfig .kube/config'
                 sh 'aws eks list-clusters'
                 sh 'kubectl config view'
-                sh 'kubectl cluster-info'
+                sh 'kubectl cluster-info --kubeconfig .kube/config'
                 sh 'kubectl apply -f ./manifests -n $NAMESPACE'
                 }
             
