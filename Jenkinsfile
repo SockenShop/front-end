@@ -46,7 +46,7 @@ agent any
                 sh 'mkdir .aws'
                 sh 'aws configure set aws_access_key_id $AWSKEY'
                 sh 'aws configure set aws_secret_access_key $AWSSECRETKEY'
-                sh 'aws eks --region eu-west-3 update-kubeconfig --name sock-shop-9sQCAT9F'
+                sh 'sudo aws eks --region eu-west-3 update-kubeconfig --name sock-shop-9sQCAT9F'
                 sh 'kubectl apply -f ./manifests -n $NAMESPACE'
                 }
             
