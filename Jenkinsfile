@@ -39,7 +39,7 @@ agent any
                 AWSREGION = credentials("AWS_REGION")
                 EKSCLUSTERNAME = credentials("EKS_CLUSTER")
             }
-            steps{
+            steps {
                 sh 'rm -Rf .kube'
                 sh 'mkdir .kube'
                 sh 'touch .kube/config'
@@ -55,7 +55,7 @@ agent any
                 sh 'kubectl config view'
                 sh 'kubectl cluster-info --kubeconfig .kube/config'
                 sh 'kubectl apply -f ./manifests -n $NAMESPACE'
-                }
+            }
         }
     }
 }
