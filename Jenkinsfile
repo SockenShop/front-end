@@ -4,7 +4,7 @@ pipeline {
         DOCKER_IMAGE_FRONT_END = "front-end"
         DOCKER_TAG = "${BUILD_ID}"
         BUILD_AGENT  = ""
-        NAMESPACE = "sock-shop"
+        NAMESPACE = credentials("NAMESPACE")
     }
 agent any
     stages {
@@ -38,8 +38,6 @@ agent any
                 AWSSECRETKEY = credentials("AWS_SECRET_KEY")
                 AWSREGION = credentials("AWS_REGION")
                 EKSCLUSTERNAME = credentials("EKS_CLUSTER")
-                NAMESPACE = credentials("NAMESPACE")
-
             }
             steps{
                 sh 'rm -Rf .kube'
