@@ -52,7 +52,6 @@ agent any
                 sh 'aws configure set output text'                
                 sh 'aws eks --region $AWSREGION update-kubeconfig --name $EKSCLUSTERNAME --kubeconfig .kube/config' 
                 sh 'aws eks list-clusters'
-                sh 'kubectl config view'
                 sh 'kubectl cluster-info --kubeconfig .kube/config'
                 sh 'kubectl apply -f ./manifests -n $NAMESPACE --kubeconfig .kube/config'
             }
